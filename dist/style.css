@@ -1,3 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+/**** Custom properties ****/
+
+:root{
+    --background-color-1: rgb(0, 162, 255);
+    --background-color-2: rgb(0, 225, 255);
+
+    --font-family: 'Poppins', sans-serif;
+}
+
+
+/**** Global properties ****/
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: linear-gradient(270deg, var(--background-color-1), var(--background-color-2));
+    font-family: var(--font-family);
+}
+
+
+/**** Global layout ****/
+
+.content-holder{
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .content{
+    width: 60vw;
+    height: 80vh;
+
     border: solid 1px red;
 }
+
+
+/**** Components ****/
