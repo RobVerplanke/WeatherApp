@@ -1,0 +1,27 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "This project is part of \"The Odin Project\" curriculum and serves as an introduction to utilizing APIs. The goal of this project is to create a weather forecast site that provides weather information for a specified location. The weather data is fetched using the weather API covered in the previous lesson. The app should allow users to search for a particular location and switch between displaying the temperature in Fahrenheit or Celsius.",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobVerplanke/WeatherApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobVerplanke/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/RobVerplanke/WeatherApp#readme",
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
