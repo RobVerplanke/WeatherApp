@@ -7,6 +7,7 @@
     --background-color-1: rgb(0, 162, 255);
     --background-color-2: rgb(0, 225, 255);
 
+    --font-color: #eee;
     --font-family: 'Poppins', sans-serif;
 }
 
@@ -19,6 +20,9 @@ body{
     box-sizing: border-box;
     background: linear-gradient(270deg, var(--background-color-1), var(--background-color-2));
     font-family: var(--font-family);
+    color: var(--font-color);
+    font-size: 1.2em;
+    font-weight: 900;
 }
 
 
@@ -36,7 +40,26 @@ body{
     width: 60vw;
     height: 80vh;
 
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
     border: solid 1px red;
+}
+
+.content__form{
+    display: flex;
+    justify-content: space-around;
+}
+
+.content__weather-forecast{
+    display: flex;
+    gap: 40px;
+}
+
+.content__weather-forecast > div{
+    padding: 5px;
+    border: solid 1px var(--font-color);
 }
 
 
