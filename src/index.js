@@ -1,3 +1,3 @@
-import fetchWeather from './modules/weatherDataFetcher';
+import setDefaultData from './modules/weatherDisplay';
 
-fetchWeather();
+setDefaultData();
