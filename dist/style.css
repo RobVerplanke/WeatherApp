@@ -57,8 +57,9 @@ body{
 }
 
 .content__weather-forecast > div{
+    width: 160px;
     padding: 5px;
-    border: solid 1px var(--font-color);
+    /* border: solid 1px var(--font-color); */
 }
 
 .content__weather-today{
