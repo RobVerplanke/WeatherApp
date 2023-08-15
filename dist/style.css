@@ -44,7 +44,6 @@ body{
     flex-direction: column;
     row-gap: 20px;
 
-    border: solid 1px red;
 }
 
 .content__form{
@@ -64,3 +63,14 @@ body{
 
 
 /**** Components ****/
+
+.material-symbols-outlined{
+    vertical-align: middle;
+    color: var(--font-color);
+}
+
+#search-submit{
+    background: none;
+    border: none;
+    cursor: pointer;
+}

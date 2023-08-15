@@ -1,1 +1,1 @@
-console.log("test");
+(()=>{"use strict";!async function(){try{const o=await fetch("https://api.weatherapi.com/v1/current.json?key=106cea8e9d704e439de122930230708&q=london");if(!o.ok)throw new Error("Network response was not ok");const t=await o.json();console.log(t)}catch(o){console.log(`Error: ${o}`)}}()})();

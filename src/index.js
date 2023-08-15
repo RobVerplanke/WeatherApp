@@ -1,1 +1,3 @@
-console.log('test');
+import fetchWeather from './modules/weatherDataFetcher';
+
+fetchWeather();
