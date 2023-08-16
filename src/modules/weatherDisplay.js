@@ -1,91 +1,155 @@
-/* eslint-disable max-len */
-import fetchWeather from './weatherDataFetcher';
+export default function getFormElements() {
+  const searchBar = document.querySelector('#search-location');
+  const submitButton = document.querySelector('#search-submit');
 
-function setElementsForecast(weatherData) {
-  // Get all the text and icon containers
+  return { searchBar, submitButton };
+}
+
+function getElementsTodaysWeather() {
+  const todaysWeatherTitle = document.querySelector('.content__title');
+  const todaysWeatherHolder = document.querySelector('.content__weather-today');
+  const todaysWeatherDescription = document.querySelector('.weather-today__desc');
+  const todaysWeatherDegrees = document.querySelector('.weather-today__degrees');
+
+  return {
+    todaysWeatherTitle,
+    todaysWeatherHolder,
+    todaysWeatherDescription,
+    todaysWeatherDegrees,
+  };
+}
+
+function getElementsForecast() {
   const weatherForecastDay1 = document.querySelector('.weather-forecast__tomorrow');
   const forecastTitleDay1 = document.querySelector('.weather-forecast-tomorrow__title');
-  const forecastIconDay1 = document.querySelector('.weather-forecast-tomorrow__icon');
   const forecastDescriptionDay1 = document.querySelector('.weather-forecast-tomorrow__desc');
   const forecastDegreesDay1 = document.querySelector('.weather-forecast-tomorrow__degrees');
 
   const weatherForecastDay2 = document.querySelector('.weather-forecast__2nd-day');
   const forecastTitleDay2 = document.querySelector('.weather-forecast-2nd-day__title');
-  const forecastIconDay2 = document.querySelector('.weather-forecast-2nd-day__icon');
   const forecastDescriptionDay2 = document.querySelector('.weather-forecast-2nd-day__desc');
   const forecastDegreesDay2 = document.querySelector('.weather-forecast-2nd-day__degrees');
 
   const weatherForecastDay3 = document.querySelector('.weather-forecast__3rd-day');
   const forecastTitleDay3 = document.querySelector('.weather-forecast-3rd-day__title');
-  const forecastIconDay3 = document.querySelector('.weather-forecast-3rd-day__icon');
   const forecastDescriptionDay3 = document.querySelector('.weather-forecast-3rd-day__desc');
   const forecastDegreesDay3 = document.querySelector('.weather-forecast-3rd-day__degrees');
 
-  // Set corresponding icons for each day
-  const iconDay1 = document.createElement('img');
-  const iconUrlDay1 = `https:${weatherData.forecast.forecastday[1].day.condition.icon}`;
-  iconDay1.src = iconUrlDay1;
-  forecastIconDay1.append(iconDay1);
+  return {
+    weatherForecastDay1,
+    forecastTitleDay1,
+    forecastDescriptionDay1,
+    forecastDegreesDay1,
+    weatherForecastDay2,
+    forecastTitleDay2,
+    forecastDescriptionDay2,
+    forecastDegreesDay2,
+    weatherForecastDay3,
+    forecastTitleDay3,
+    forecastDescriptionDay3,
+    forecastDegreesDay3,
+  };
+}
 
-  const iconDay2 = document.createElement('img');
-  const iconUrlDay2 = `https:${weatherData.forecast.forecastday[2].day.condition.icon}`;
-  iconDay2.src = iconUrlDay2;
-  forecastIconDay2.append(iconDay2);
+function getIconContainerTodaysWeather() {
+  const todaysWeatherIcon = document.querySelector('.weather-today__icon');
 
-  const iconDay3 = document.createElement('img');
-  const iconUrlDay3 = `https:${weatherData.forecast.forecastday[3].day.condition.icon}`;
-  iconDay3.src = iconUrlDay3;
-  forecastIconDay3.append(iconDay3);
+  return todaysWeatherIcon;
+}
+
+function getIconContainersForecast() {
+  const forecastIconDay1 = document.querySelector('.weather-forecast-tomorrow__icon');
+  const forecastIconDay2 = document.querySelector('.weather-forecast-2nd-day__icon');
+  const forecastIconDay3 = document.querySelector('.weather-forecast-3rd-day__icon');
+
+  return [
+    forecastIconDay1,
+    forecastIconDay2,
+    forecastIconDay3,
+  ];
+}
+
+export function setTextElementsForecast(weatherData) {
+  const ForecastElements = getElementsForecast();
 
   // Set the day(title) of the forecast
-  forecastTitleDay1.innerHTML = weatherData.forecast.forecastday[1].date;
-  forecastTitleDay2.innerHTML = weatherData.forecast.forecastday[2].date;
-  forecastTitleDay3.innerHTML = weatherData.forecast.forecastday[3].date;
+  ForecastElements.forecastTitleDay1.innerHTML = weatherData.forecastDay1Title;
+  ForecastElements.forecastTitleDay2.innerHTML = weatherData.forecastDay2Title;
+  ForecastElements.forecastTitleDay3.innerHTML = weatherData.forecastDay3Title;
 
   // Set the forecast description for each day
-  forecastDescriptionDay1.innerHTML = weatherData.forecast.forecastday[1].day.condition.text;
-  forecastDescriptionDay2.innerHTML = weatherData.forecast.forecastday[2].day.condition.text;
-  forecastDescriptionDay3.innerHTML = weatherData.forecast.forecastday[3].day.condition.text;
+  ForecastElements.forecastDescriptionDay1.innerHTML = weatherData.forecastDay1Text;
+  ForecastElements.forecastDescriptionDay2.innerHTML = weatherData.forecastDay2Text;
+  ForecastElements.forecastDescriptionDay3.innerHTML = weatherData.forecastDay3Text;
 
   // Set the forecast temperature for each day
-  forecastDegreesDay1.innerHTML = `${weatherData.forecast.forecastday[1].day.avgtemp_c} ℃`;
-  forecastDegreesDay2.innerHTML = `${weatherData.forecast.forecastday[2].day.avgtemp_c} ℃`;
-  forecastDegreesDay3.innerHTML = `${weatherData.forecast.forecastday[3].day.avgtemp_c} ℃`;
+  ForecastElements.forecastDegreesDay1.innerHTML = `${weatherData.forecastDay1Temp} ℃`;
+  ForecastElements.forecastDegreesDay2.innerHTML = `${weatherData.forecastDay2Temp} ℃`;
+  ForecastElements.forecastDegreesDay3.innerHTML = `${weatherData.forecastDay3Temp} ℃`;
 
   // Append content to the content containers
-  weatherForecastDay1.append(forecastTitleDay1, forecastIconDay1, forecastDescriptionDay1, forecastDegreesDay1);
-  weatherForecastDay2.append(forecastIconDay2, forecastDescriptionDay2, forecastDegreesDay2);
-  weatherForecastDay3.append(forecastIconDay3, forecastDescriptionDay3, forecastDegreesDay3);
+  ForecastElements.weatherForecastDay1.append(
+    ForecastElements.forecastTitleDay1,
+    ForecastElements.forecastDescriptionDay1,
+    ForecastElements.forecastDegreesDay1,
+  );
 
-//   console.log(weatherData);
+  ForecastElements.weatherForecastDay2.append(
+    ForecastElements.forecastTitleDay2,
+    ForecastElements.forecastDescriptionDay2,
+    ForecastElements.forecastDegreesDay2,
+  );
+
+  ForecastElements.weatherForecastDay3.append(
+    ForecastElements.forecastTitleDay3,
+    ForecastElements.forecastDescriptionDay3,
+    ForecastElements.forecastDegreesDay3,
+  );
 }
 
-function setElementsTodaysWeather(weatherData) {
-  const todaysWeatherTitle = document.querySelector('.content__title');
-  const todaysWeatherHolder = document.querySelector('.content__weather-today');
-  const todaysWeatherIcon = document.querySelector('.weather-today__icon');
-  const todaysWeatherDescription = document.querySelector('.weather-today__desc');
-  const todaysWeatherDegrees = document.querySelector('.weather-today__degrees');
+export function setTextElementsTodaysWeather(weatherData) {
+  const TodaysWeatherElements = getElementsTodaysWeather();
 
-  todaysWeatherTitle.innerHTML = `<h1>Today's weather in ${weatherData.location.name}</h1>`;
+  // Set the content of todays weather
+  TodaysWeatherElements.todaysWeatherTitle.innerHTML = `<h1>Today's weather in ${weatherData.location}</h1>`;
+  TodaysWeatherElements.todaysWeatherDescription.innerHTML = weatherData.currentConditionText;
+  TodaysWeatherElements.todaysWeatherDegrees.innerHTML = `${weatherData.currentTemp_c} ℃`;
 
+  // Append content to the content containers
+  TodaysWeatherElements.todaysWeatherHolder.append(
+    TodaysWeatherElements.todaysWeatherTitle,
+    TodaysWeatherElements.todaysWeatherDescription,
+    TodaysWeatherElements.todaysWeatherDegrees,
+  );
+}
+
+function createIcon(url) {
   const icon = document.createElement('img');
-  const iconUrl = `https:${weatherData.current.condition.icon}`;
+  const iconUrl = `https:${url}`;
   icon.src = iconUrl;
-  icon.classList.add('weather-icon');
-  todaysWeatherIcon.append(icon);
-
-  todaysWeatherDescription.innerHTML = weatherData.current.condition.text;
-  todaysWeatherDegrees.innerHTML = `${weatherData.current.temp_c} ℃`;
-
-  todaysWeatherHolder.append(todaysWeatherIcon, todaysWeatherDescription, todaysWeatherDegrees);
-
-  setElementsForecast(weatherData);
+  return icon;
 }
 
-export default async function setDefaultData() {
-  const defaultLocation = 'Groningen';
-  const weatherData = await fetchWeather(defaultLocation);
+export function setIconTodaysWeather(weatherData) {
+  const iconContainerTodaysWeather = getIconContainerTodaysWeather();
 
-  setElementsTodaysWeather(weatherData);
+  iconContainerTodaysWeather.append(createIcon(weatherData.currentConditionIcon));
+}
+
+export function setIconsForecast(weatherData) {
+  const [iconContainerDay1, iconContainerDay2, iconContainerDay3] = getIconContainersForecast();
+
+  iconContainerDay1.append(createIcon(weatherData.forecastDay1Icon));
+  iconContainerDay2.append(createIcon(weatherData.forecastDay2Icon));
+  iconContainerDay3.append(createIcon(weatherData.forecastDay3Icon));
+}
+
+export function clearIconContainers() {
+  const iconContainerTodaysWeather = getIconContainerTodaysWeather();
+  const [iconContainerDay1, iconContainerDay2, iconContainerDay3] = getIconContainersForecast();
+
+  iconContainerTodaysWeather.innerHTML = '';
+  iconContainerDay1.innerHTML = '';
+  iconContainerDay2.innerHTML = '';
+  iconContainerDay3.innerHTML = '';
 }

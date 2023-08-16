@@ -1,3 +1,7 @@
-import setDefaultData from './modules/weatherDisplay';
+import fetchWeather from './modules/weatherDataFetcher';
+import addEventListener from './modules/formHandler';
 
-setDefaultData();
+const defaultLocation = 'Groningen';
+
+fetchWeather(defaultLocation);
+addEventListener();

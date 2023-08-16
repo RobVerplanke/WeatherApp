@@ -1,6 +1,6 @@
 // Function that filters the required data
 function formatWeatherData(data) {
-  const formattedData = {
+  const filteredData = {
     location: data.location.name,
     currentConditionText: data.current.condition.text,
     currentConditionIcon: data.current.condition.icon,
@@ -19,8 +19,7 @@ function formatWeatherData(data) {
     forecastDay3Temp: data.forecast.forecastday[3].day.avgtemp_c,
   };
 
-  console.log(`Filtered data: ${formattedData.currentTemp_c}`);
-  return formattedData;
+  return filteredData;
 }
 
 // Function to fetch all data

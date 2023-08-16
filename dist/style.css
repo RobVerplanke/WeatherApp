@@ -21,8 +21,12 @@ body{
     background: linear-gradient(270deg, var(--background-color-1), var(--background-color-2));
     font-family: var(--font-family);
     color: var(--font-color);
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 900;
+}
+
+h1{
+    font-size: 2.4em;
 }
 
 
@@ -42,13 +46,17 @@ body{
 
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    row-gap: 20px;
 
 }
 
 .content__form{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.weather-today__degrees{
+    font-size: 1.6em;
 }
 
 .content__weather-forecast{
@@ -62,8 +70,15 @@ body{
     /* border: solid 1px var(--font-color); */
 }
 
+.weather-forecast-tomorrow__degrees:last-child,
+.weather-forecast-2nd-day__degrees:last-child,
+.weather-forecast-3rd-day__degrees:last-child {
+    font-size: 1.4em;
+
+}
+
 .content__weather-today{
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 

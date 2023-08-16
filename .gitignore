@@ -1,2 +1,5 @@
 node_modules
 notes.md
+./src/modules/backup-formHandler.js
+./src/modules/backup-weatherDataFetcher.js
+./src/modules/backup-weatherDisplay.js
