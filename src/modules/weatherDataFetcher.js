@@ -1,3 +1,5 @@
+import { format, parseISO } from 'date-fns';
+
 // Function that filters the required data
 function formatWeatherData(data) {
   const formattedData = {
@@ -18,6 +20,10 @@ function formatWeatherData(data) {
     forecastDay2Temp: data.forecast.forecastday[2].day.avgtemp_c,
     forecastDay3Temp: data.forecast.forecastday[3].day.avgtemp_c,
   };
+
+  formattedData.forecastDay1Title = format(parseISO(data.forecast.forecastday[1].date), 'eeee');
+  formattedData.forecastDay2Title = format(parseISO(data.forecast.forecastday[2].date), 'eeee');
+  formattedData.forecastDay3Title = format(parseISO(data.forecast.forecastday[3].date), 'eeee');
 
   return formattedData;
 }

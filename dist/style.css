@@ -70,9 +70,16 @@ h1{
     /* border: solid 1px var(--font-color); */
 }
 
-.weather-forecast-tomorrow__degrees:last-child,
-.weather-forecast-2nd-day__degrees:last-child,
-.weather-forecast-3rd-day__degrees:last-child {
+.weather-forecast-tomorrow__degrees,
+.weather-forecast-2nd-day__degrees,
+.weather-forecast-3rd-day__degrees {
+    font-size: 1.4em;
+
+}
+
+.weather-forecast-tomorrow__title,
+.weather-forecast-2nd-day__title,
+.weather-forecast-3rd-day__title {
     font-size: 1.4em;
 
 }
@@ -95,7 +102,7 @@ h1{
     cursor: pointer;
 }
 
-.weather-icon{
+.weather-today__icon{
     width: 120px;
     height: 120px;
 }

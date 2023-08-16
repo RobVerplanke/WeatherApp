@@ -1,7 +1,7 @@
 import fetchWeather from './modules/weatherDataFetcher';
 import addEventListener from './modules/formHandler';
 import {
-  setTextElementsTodaysWeather, setTextElementsForecast, setIconTodaysWeather, setIconsForecast,
+  setTextElementsTodaysWeather, setElementsForecast, setIconTodaysWeather,
 } from './modules/weatherDisplay';
 
 const defaultLocation = 'Groningen';
@@ -12,8 +12,7 @@ const defaultLocation = 'Groningen';
 
   setTextElementsTodaysWeather(formattedData);
   setIconTodaysWeather(formattedData);
-  setTextElementsForecast(formattedData);
-  setIconsForecast(formattedData);
+  setElementsForecast(formattedData);
 }());
 
 // Make the search button work
