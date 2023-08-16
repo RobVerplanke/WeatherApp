@@ -1,3 +1,4 @@
+// Select the searchbar and the submitbutton
 export default function getFormElements() {
   const searchBar = document.querySelector('#search-location');
   const submitButton = document.querySelector('#search-submit');
@@ -5,20 +6,22 @@ export default function getFormElements() {
   return { searchBar, submitButton };
 }
 
+// Select all 'today's weather' content holders
 function getElementsTodaysWeather() {
-  const todaysWeatherTitle = document.querySelector('.content__title');
   const todaysWeatherHolder = document.querySelector('.content__weather-today');
+  const todaysWeatherTitle = document.querySelector('.content__title');
   const todaysWeatherDescription = document.querySelector('.weather-today__desc');
   const todaysWeatherDegrees = document.querySelector('.weather-today__degrees');
 
   return {
-    todaysWeatherTitle,
     todaysWeatherHolder,
+    todaysWeatherTitle,
     todaysWeatherDescription,
     todaysWeatherDegrees,
   };
 }
 
+// Select all forecast content holders
 function getElementsForecast() {
   const weatherForecastDay1 = document.querySelector('.weather-forecast__tomorrow');
   const forecastTitleDay1 = document.querySelector('.weather-forecast-tomorrow__title');
@@ -51,12 +54,14 @@ function getElementsForecast() {
   };
 }
 
+// Select the icon container for 'today's weather'
 function getIconContainerTodaysWeather() {
   const todaysWeatherIcon = document.querySelector('.weather-today__icon');
 
   return todaysWeatherIcon;
 }
 
+// Select the icon containers in the forecast section
 function getIconContainersForecast() {
   const forecastIconDay1 = document.querySelector('.weather-forecast-tomorrow__icon');
   const forecastIconDay2 = document.querySelector('.weather-forecast-2nd-day__icon');
@@ -69,6 +74,7 @@ function getIconContainersForecast() {
   ];
 }
 
+// Set all corresponding content in the forecast section
 export function setTextElementsForecast(weatherData) {
   const ForecastElements = getElementsForecast();
 
@@ -107,6 +113,7 @@ export function setTextElementsForecast(weatherData) {
   );
 }
 
+// Set all corresponding content in 'today's weather'
 export function setTextElementsTodaysWeather(weatherData) {
   const TodaysWeatherElements = getElementsTodaysWeather();
 
@@ -117,12 +124,12 @@ export function setTextElementsTodaysWeather(weatherData) {
 
   // Append content to the content containers
   TodaysWeatherElements.todaysWeatherHolder.append(
-    TodaysWeatherElements.todaysWeatherTitle,
     TodaysWeatherElements.todaysWeatherDescription,
     TodaysWeatherElements.todaysWeatherDegrees,
   );
 }
 
+// Create a new icon
 function createIcon(url) {
   const icon = document.createElement('img');
   const iconUrl = `https:${url}`;
@@ -130,12 +137,14 @@ function createIcon(url) {
   return icon;
 }
 
+// Set the corresponding icon in 'today's weather'
 export function setIconTodaysWeather(weatherData) {
   const iconContainerTodaysWeather = getIconContainerTodaysWeather();
 
   iconContainerTodaysWeather.append(createIcon(weatherData.currentConditionIcon));
 }
 
+// Set the corresponding icons in the forecast section
 export function setIconsForecast(weatherData) {
   const [iconContainerDay1, iconContainerDay2, iconContainerDay3] = getIconContainersForecast();
 
@@ -144,6 +153,7 @@ export function setIconsForecast(weatherData) {
   iconContainerDay3.append(createIcon(weatherData.forecastDay3Icon));
 }
 
+// Empty all icon holders
 export function clearIconContainers() {
   const iconContainerTodaysWeather = getIconContainerTodaysWeather();
   const [iconContainerDay1, iconContainerDay2, iconContainerDay3] = getIconContainersForecast();

@@ -19,7 +19,6 @@ function formatWeatherData(data) {
     forecastDay3Temp: data.forecast.forecastday[3].day.avgtemp_c,
   };
 
-  console.log(`Filtered data: ${formattedData.currentTemp_c}`);
   return formattedData;
 }
 

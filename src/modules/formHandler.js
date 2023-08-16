@@ -1,4 +1,7 @@
-import getFormElements, { setTextElementsTodaysWeather, setTextElementsForecast } from './weatherDisplay';
+import getFormElements, {
+  // eslint-disable-next-line max-len
+  setTextElementsTodaysWeather, setTextElementsForecast, setIconTodaysWeather, setIconsForecast, clearIconContainers,
+} from './weatherDisplay';
 import fetchWeather from './weatherDataFetcher';
 
 export default function addEventListener() {
@@ -6,8 +9,10 @@ export default function addEventListener() {
 
   submitButton.addEventListener('click', async () => {
     const formattedData = await fetchWeather(searchBar.value);
-    console.log(searchBar.value);
+    clearIconContainers();
     setTextElementsTodaysWeather(formattedData);
+    setIconTodaysWeather(formattedData);
     setTextElementsForecast(formattedData);
+    setIconsForecast(formattedData);
   });
 }
