@@ -1,9 +1,10 @@
-// Select the searchbar and the submitbutton
-export default function getFormElements() {
+// Select the searchbar and the submit button
+export function getFormElements() {
   const searchBar = document.querySelector('#search-location');
   const submitButton = document.querySelector('#search-submit');
+  const temperatureToggle = document.getElementById('temperature-toggle');
 
-  return { searchBar, submitButton };
+  return { searchBar, submitButton, temperatureToggle };
 }
 
 // Select all 'today's weather' content holders
@@ -19,6 +20,12 @@ function getElementsTodaysWeather() {
     todaysWeatherDescription,
     todaysWeatherDegrees,
   };
+}
+
+// Check the status of the toggle switch
+function checkToggleStatus() {
+  const temperatureToggle = document.getElementById('temperature-toggle');
+  return temperatureToggle.checked;
 }
 
 // Select all forecast content holders
@@ -60,7 +67,7 @@ function getElementsForecast() {
   };
 }
 
-// Select the icon container for 'today's weather'
+// Select the icon container for 'today's weather' section
 function getIconContainerTodaysWeather() {
   const todaysWeatherIcon = document.querySelector('.weather-today__icon');
 
@@ -102,21 +109,28 @@ export function clearIconContainers() {
   iconContainerDay3.innerHTML = '';
 }
 
-// Set the corresponding icon in 'today's weather'
+// Set the corresponding icon in 'today's weather' section
 export function setIconTodaysWeather(weatherData) {
   const iconContainerTodaysWeather = getIconContainerTodaysWeather();
 
   iconContainerTodaysWeather.append(createIcon(weatherData.currentConditionIcon, 'weather-today__icon'));
 }
 
-// Set all corresponding content in 'today's weather'
+// Set all corresponding content in 'today's weather' section
 export function setTextElementsTodaysWeather(weatherData) {
   const TodaysWeatherElements = getElementsTodaysWeather();
+  const toggleStatus = checkToggleStatus();
 
   // Set the content of todays weather
   TodaysWeatherElements.todaysWeatherTitle.innerHTML = `<h1>Today's weather in ${weatherData.location}</h1>`;
   TodaysWeatherElements.todaysWeatherDescription.innerHTML = weatherData.currentConditionText;
-  TodaysWeatherElements.todaysWeatherDegrees.innerHTML = `${weatherData.currentTemp_c} ℃`;
+
+  // Set the content of todays temperature, check toggled scale
+  if (toggleStatus === false) {
+    TodaysWeatherElements.todaysWeatherDegrees.innerHTML = `${weatherData.currentTemp_c} ℃`;
+  } else {
+    TodaysWeatherElements.todaysWeatherDegrees.innerHTML = `${weatherData.currentTemp_f} F`;
+  }
 
   // Append content to the content containers
   TodaysWeatherElements.todaysWeatherHolder.append(
@@ -128,6 +142,7 @@ export function setTextElementsTodaysWeather(weatherData) {
 // Set all corresponding content in the forecast section
 export function setElementsForecast(weatherData) {
   const ForecastElements = getElementsForecast();
+  const toggleStatus = checkToggleStatus();
 
   // Set the day(title) of the forecast
   ForecastElements.forecastTitleDay1.innerHTML = weatherData.forecastDay1Title;
@@ -140,15 +155,20 @@ export function setElementsForecast(weatherData) {
   ForecastElements.forecastIconDay3.append(createIcon(weatherData.forecastDay3Icon));
 
   // Set the forecast description for each day
-
   ForecastElements.forecastDescriptionDay1.innerHTML = weatherData.forecastDay1Text;
   ForecastElements.forecastDescriptionDay2.innerHTML = weatherData.forecastDay2Text;
   ForecastElements.forecastDescriptionDay3.innerHTML = weatherData.forecastDay3Text;
 
-  // Set the forecast temperature for each day
-  ForecastElements.forecastDegreesDay1.innerHTML = `${weatherData.forecastDay1Temp} ℃`;
-  ForecastElements.forecastDegreesDay2.innerHTML = `${weatherData.forecastDay2Temp} ℃`;
-  ForecastElements.forecastDegreesDay3.innerHTML = `${weatherData.forecastDay3Temp} ℃`;
+  // Set the forecast temperature for each day, check toggled scale
+  if (toggleStatus === false) {
+    ForecastElements.forecastDegreesDay1.innerHTML = `${weatherData.forecastDay1Temp_c} ℃`;
+    ForecastElements.forecastDegreesDay2.innerHTML = `${weatherData.forecastDay2Temp_c} ℃`;
+    ForecastElements.forecastDegreesDay3.innerHTML = `${weatherData.forecastDay3Temp_c} ℃`;
+  } else {
+    ForecastElements.forecastDegreesDay1.innerHTML = `${weatherData.forecastDay1Temp_f} F`;
+    ForecastElements.forecastDegreesDay2.innerHTML = `${weatherData.forecastDay2Temp_f} F`;
+    ForecastElements.forecastDegreesDay3.innerHTML = `${weatherData.forecastDay3Temp_f} F`;
+  }
 
   // Append content to the content containers
   ForecastElements.weatherForecastDay1.append(
@@ -171,4 +191,11 @@ export function setElementsForecast(weatherData) {
     ForecastElements.forecastDescriptionDay3,
     ForecastElements.forecastDegreesDay3,
   );
+}
+
+export function setNewContent(formattedData) {
+  clearIconContainers();
+  setTextElementsTodaysWeather(formattedData);
+  setIconTodaysWeather(formattedData);
+  setElementsForecast(formattedData);
 }

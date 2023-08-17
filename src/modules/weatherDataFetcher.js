@@ -7,6 +7,7 @@ function formatWeatherData(data) {
     currentConditionText: data.current.condition.text,
     currentConditionIcon: data.current.condition.icon,
     currentTemp_c: data.current.temp_c,
+    currentTemp_f: data.current.temp_f,
     forecastDay1Title: data.forecast.forecastday[1].date,
     forecastDay2Title: data.forecast.forecastday[2].date,
     forecastDay3Title: data.forecast.forecastday[3].date,
@@ -16,9 +17,12 @@ function formatWeatherData(data) {
     forecastDay1Text: data.forecast.forecastday[1].day.condition.text,
     forecastDay2Text: data.forecast.forecastday[2].day.condition.text,
     forecastDay3Text: data.forecast.forecastday[3].day.condition.text,
-    forecastDay1Temp: data.forecast.forecastday[1].day.avgtemp_c,
-    forecastDay2Temp: data.forecast.forecastday[2].day.avgtemp_c,
-    forecastDay3Temp: data.forecast.forecastday[3].day.avgtemp_c,
+    forecastDay1Temp_c: data.forecast.forecastday[1].day.avgtemp_c,
+    forecastDay2Temp_c: data.forecast.forecastday[2].day.avgtemp_c,
+    forecastDay3Temp_c: data.forecast.forecastday[3].day.avgtemp_c,
+    forecastDay1Temp_f: data.forecast.forecastday[1].day.avgtemp_f,
+    forecastDay2Temp_f: data.forecast.forecastday[2].day.avgtemp_f,
+    forecastDay3Temp_f: data.forecast.forecastday[3].day.avgtemp_f,
   };
 
   formattedData.forecastDay1Title = format(parseISO(data.forecast.forecastday[1].date), 'eeee');
@@ -41,7 +45,8 @@ export default async function fetchWeather(location) {
     }
 
     const weatherData = await response.json();
-    // return weatherData;
+
+    // return formatted weatherData;
     return formatWeatherData(weatherData);
   } catch (error) {
     throw error;
