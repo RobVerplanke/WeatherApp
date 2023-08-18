@@ -139,6 +139,7 @@ export function setElementsTodaysWeather(weatherData) {
 export function setElementsForecastDay1(weatherData) {
   const ForecastElementsDay1 = getElementsForecastDay1();
 
+  // Set the content of forecast day 1
   ForecastElementsDay1.forecastTitleDay1.innerHTML = weatherData.forecastDay1Title;
   ForecastElementsDay1.forecastIconDay1.append(createIcon(weatherData.forecastDay1Icon));
   ForecastElementsDay1.forecastDescriptionDay1.innerHTML = weatherData.forecastDay1Text;
@@ -156,6 +157,7 @@ export function setElementsForecastDay1(weatherData) {
 export function setElementsForecastDay2(weatherData) {
   const ForecastElementsDay2 = getElementsForecastDay2();
 
+  // Set the content of forecast day 2
   ForecastElementsDay2.forecastTitleDay2.innerHTML = weatherData.forecastDay2Title;
   ForecastElementsDay2.forecastIconDay2.append(createIcon(weatherData.forecastDay2Icon));
   ForecastElementsDay2.forecastDescriptionDay2.innerHTML = weatherData.forecastDay2Text;
@@ -173,6 +175,7 @@ export function setElementsForecastDay2(weatherData) {
 export function setElementsForecastDay3(weatherData) {
   const ForecastElementsDay3 = getElementsForecastDay3();
 
+  // Set the content of forecast day 3
   ForecastElementsDay3.forecastTitleDay3.innerHTML = weatherData.forecastDay3Title;
   ForecastElementsDay3.forecastIconDay3.append(createIcon(weatherData.forecastDay3Icon));
   ForecastElementsDay3.forecastDescriptionDay3.innerHTML = weatherData.forecastDay3Text;

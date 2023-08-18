@@ -6,10 +6,10 @@ import { setNewContent } from './modules/weatherDisplay';
 const defaultLocation = 'Groningen';
 
 // IIFE - Initially load the weather of the default location
-(async function loadDefaultWeather() {
+(async () => {
   const formattedData = await fetchWeather(defaultLocation);
   setNewContent(formattedData);
-}());
+})();
 
-// Make the search button work
+// Make the search button and toggle switch usable
 addEventListeners();

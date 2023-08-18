@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-catch */
+
 import { format, parseISO } from 'date-fns';
 
 // Function that filters the required data
@@ -33,7 +35,6 @@ export default async function fetchWeather(location) {
   const apiKey = '106cea8e9d704e439de122930230708';
   const forecastDays = 4;
   const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=${forecastDays}`;
-  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
