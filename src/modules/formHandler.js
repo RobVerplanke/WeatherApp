@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
-import { clearIconContainers, getFormElements, setNewContent } from './weatherDisplay';
+import {
+  clearIconContainers, getFormElements, setNewContent, toggleTempScale,
+} from './weatherDisplay';
 import fetchWeather from './weatherDataFetcher';
 
-export default function addEventListeners() {
-  const { searchBar, submitButton, temperatureToggle } = getFormElements();
+const { searchBar, submitButton, temperatureToggle } = getFormElements();
 
+export default function addEventListeners() {
   submitButton.addEventListener('click', async () => {
     const formattedData = await fetchWeather(searchBar.value);
     clearIconContainers();
@@ -12,6 +14,10 @@ export default function addEventListeners() {
   });
 
   temperatureToggle.addEventListener('change', () => {
-    // code
+    if (temperatureToggle.checked) {
+      toggleTempScale('Fahrenheit');
+    } else {
+      toggleTempScale('Celcius');
+    }
   });
 }

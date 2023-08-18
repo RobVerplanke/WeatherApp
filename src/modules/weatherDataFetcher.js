@@ -10,6 +10,7 @@ function formatWeatherData(data) {
     currentConditionText: data.current.condition.text,
     currentConditionIcon: data.current.condition.icon,
     currentTemp_c: data.current.temp_c,
+    currentTemp_f: data.current.temp_f,
     forecastDays: [], // Initialize forecastDays array
   };
 
@@ -26,6 +27,8 @@ function formatWeatherData(data) {
       icon: forecastDay.day.condition.icon,
       text: forecastDay.day.condition.text,
       temp_c: forecastDay.day.maxtemp_c,
+      temp_f: forecastDay.day.maxtemp_f,
+
     });
   }
 
@@ -45,7 +48,7 @@ export default async function fetchWeather(location) {
 
     const weatherData = await response.json();
 
-    // return formatted weatherData;
+    // Format received data
     return formatWeatherData(weatherData);
   } catch (error) {
     throw error;

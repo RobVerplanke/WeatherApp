@@ -1,5 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable no-plusplus */
 // Select the searchbar and the submit button
+
 export function getFormElements() {
   const searchBar = document.querySelector('#search-location');
   const submitButton = document.querySelector('#search-submit');
@@ -8,6 +10,7 @@ export function getFormElements() {
   return { searchBar, submitButton, temperatureToggle };
 }
 
+// Select all icon containers
 function getIconContainers() {
   const todaysWeatherIcon = document.querySelector('.weather-today__icon');
   const forecastIconDay1 = document.querySelector('.weather-forecast-day-1__icon');
@@ -19,6 +22,7 @@ function getIconContainers() {
   };
 }
 
+// Clear all icon containers
 export function clearIconContainers() {
   const {
     todaysWeatherIcon, forecastIconDay1, forecastIconDay2, forecastIconDay3,
@@ -28,6 +32,18 @@ export function clearIconContainers() {
   forecastIconDay1.innerHTML = '';
   forecastIconDay2.innerHTML = '';
   forecastIconDay3.innerHTML = '';
+}
+
+// Select all temperature containers
+function getTempContainers() {
+  const todaysTempContainer = document.querySelector('.weather-today__degrees');
+  const forecastTempContainerDay1 = document.querySelector('.weather-forecast-day-1__degrees');
+  const forecastTempContainerDay2 = document.querySelector('.weather-forecast-day-2__degrees');
+  const forecastTempContainerDay3 = document.querySelector('.weather-forecast-day-3__degrees');
+
+  return {
+    todaysTempContainer, forecastTempContainerDay1, forecastTempContainerDay2, forecastTempContainerDay3,
+  };
 }
 
 // Select all 'today's weather' content holders
@@ -76,7 +92,7 @@ function createIcon(url, addClass) {
 }
 
 // Set all corresponding content in 'today's weather' section
-export function setElementsTodaysWeather(weatherData) {
+function setElementsTodaysWeather(weatherData) {
   const TodaysWeatherElements = getElementsTodaysWeather();
 
   // Set the content of todays weather
@@ -94,7 +110,7 @@ export function setElementsTodaysWeather(weatherData) {
 }
 
 // Set all corresponding content in the forecast section
-export function setElementsForecast(dayIndex, weatherData) {
+function setElementsForecast(dayIndex, weatherData) {
   const ForecastElements = getElementsForecast(dayIndex);
 
   ForecastElements.forecastTitle.innerHTML = weatherData.forecastDays[dayIndex][0].title;
@@ -108,6 +124,34 @@ export function setElementsForecast(dayIndex, weatherData) {
     ForecastElements.forecastDescription,
     ForecastElements.forecastDegrees,
   );
+}
+
+export function toggleTempScale(tempScale) {
+  const tempContainers = getTempContainers();
+
+  const todaysWeatherDegreesBackup = tempContainers.todaysTempContainer.innerHTML;
+  const forecastDegreesDay1Backup = tempContainers.forecastTempContainerDay1.innerHTML;
+  const forecastDegreesDay2Backup = tempContainers.forecastTempContainerDay2.innerHTML;
+  const forecastDegreesDay3Backup = tempContainers.forecastTempContainerDay3.innerHTML;
+
+  if (tempScale === 'Fahrenheit') {
+    const celsiusToFahrenheit = (celsius) => ((celsius * 9) / 5) + 32;
+
+    const currentTempCelsius = parseFloat(tempContainers.todaysTempContainer.innerHTML);
+    const forecastTempDay1Celsius = parseFloat(tempContainers.forecastTempContainerDay1.innerHTML);
+    const forecastTempDay2Celsius = parseFloat(tempContainers.forecastTempContainerDay2.innerHTML);
+    const forecastTempDay3Celsius = parseFloat(tempContainers.forecastTempContainerDay3.innerHTML);
+
+    tempContainers.todaysTempContainer.innerHTML = `${celsiusToFahrenheit(currentTempCelsius).toFixed(2)} °F`;
+    tempContainers.forecastTempContainerDay1.innerHTML = `${celsiusToFahrenheit(forecastTempDay1Celsius).toFixed(2)} °F`;
+    tempContainers.forecastTempContainerDay2.innerHTML = `${celsiusToFahrenheit(forecastTempDay2Celsius).toFixed(2)} °F`;
+    tempContainers.forecastTempContainerDay3.innerHTML = `${celsiusToFahrenheit(forecastTempDay3Celsius).toFixed(2)} °F`;
+  } else if (tempScale === 'Celsius') {
+    tempContainers.todaysTempContainer.innerHTML = todaysWeatherDegreesBackup;
+    tempContainers.forecastTempContainerDay1.innerHTML = forecastDegreesDay1Backup;
+    tempContainers.forecastTempContainerDay2.innerHTML = forecastDegreesDay2Backup;
+    tempContainers.forecastTempContainerDay3.innerHTML = forecastDegreesDay3Backup;
+  }
 }
 
 export function setNewContent(formattedData) {
