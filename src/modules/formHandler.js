@@ -10,12 +10,7 @@ export default function addEventListeners() {
     setNewContent(formattedData);
   });
 
-  temperatureToggle.addEventListener('change', function () {
-    if (this.checked) {
-      // refresh temperature content
-      console.log('check');
-    } else {
-      return console.log('unchecked');
-    }
+  temperatureToggle.addEventListener('change', () => {
+    // code
   });
 }
