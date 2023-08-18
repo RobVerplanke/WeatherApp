@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { getFormElements, setNewContent } from './weatherDisplay';
+import { clearIconContainers, getFormElements, setNewContent } from './weatherDisplay';
 import fetchWeather from './weatherDataFetcher';
 
 export default function addEventListeners() {
@@ -7,6 +7,7 @@ export default function addEventListeners() {
 
   submitButton.addEventListener('click', async () => {
     const formattedData = await fetchWeather(searchBar.value);
+    clearIconContainers();
     setNewContent(formattedData);
   });
 

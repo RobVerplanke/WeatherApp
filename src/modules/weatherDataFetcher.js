@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-useless-catch */
 
 import { format, parseISO } from 'date-fns';
@@ -9,23 +10,24 @@ function formatWeatherData(data) {
     currentConditionText: data.current.condition.text,
     currentConditionIcon: data.current.condition.icon,
     currentTemp_c: data.current.temp_c,
-    forecastDay1Title: data.forecast.forecastday[1].date,
-    forecastDay2Title: data.forecast.forecastday[2].date,
-    forecastDay3Title: data.forecast.forecastday[3].date,
-    forecastDay1Icon: data.forecast.forecastday[1].day.condition.icon,
-    forecastDay2Icon: data.forecast.forecastday[2].day.condition.icon,
-    forecastDay3Icon: data.forecast.forecastday[3].day.condition.icon,
-    forecastDay1Text: data.forecast.forecastday[1].day.condition.text,
-    forecastDay2Text: data.forecast.forecastday[2].day.condition.text,
-    forecastDay3Text: data.forecast.forecastday[3].day.condition.text,
-    forecastDay1Temp_c: data.forecast.forecastday[1].day.maxtemp_c,
-    forecastDay2Temp_c: data.forecast.forecastday[2].day.maxtemp_c,
-    forecastDay3Temp_c: data.forecast.forecastday[3].day.maxtemp_c,
+    forecastDays: [], // Initialize forecastDays array
   };
 
-  formattedData.forecastDay1Title = format(parseISO(data.forecast.forecastday[1].date), 'eeee');
-  formattedData.forecastDay2Title = format(parseISO(data.forecast.forecastday[2].date), 'eeee');
-  formattedData.forecastDay3Title = format(parseISO(data.forecast.forecastday[3].date), 'eeee');
+  for (let i = 0; i <= 3; i++) {
+    const forecastDay = data.forecast.forecastday[i];
+
+    // Initialize forecastDays[i] as an empty array if it's undefined
+    if (!formattedData.forecastDays[i]) {
+      formattedData.forecastDays[i] = [];
+    }
+
+    formattedData.forecastDays[i].push({
+      title: format(parseISO(forecastDay.date), 'eeee'),
+      icon: forecastDay.day.condition.icon,
+      text: forecastDay.day.condition.text,
+      temp_c: forecastDay.day.maxtemp_c,
+    });
+  }
 
   return formattedData;
 }

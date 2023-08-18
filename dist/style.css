@@ -70,16 +70,16 @@ h1{
     /* border: solid 1px var(--font-color); */
 }
 
-.weather-forecast-tomorrow__degrees,
-.weather-forecast-2nd-day__degrees,
-.weather-forecast-3rd-day__degrees {
+.weather-forecast-day-1__degrees,
+.weather-forecast-day-2__degrees,
+.weather-forecast-day-3__degrees {
     font-size: 1.4em;
 
 }
 
-.weather-forecast-tomorrow__title,
-.weather-forecast-2nd-day__title,
-.weather-forecast-3rd-day__title {
+.weather-forecast-day-1__title,
+.weather-forecast-day-2__title,
+.weather-forecast-day-3__title {
     font-size: 1.4em;
 
 }
