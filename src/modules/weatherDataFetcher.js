@@ -9,8 +9,10 @@ function formatWeatherData(data) {
     location: data.location.name,
     currentConditionText: data.current.condition.text,
     currentConditionIcon: data.current.condition.icon,
+    currentConditionCode: data.current.condition.code,
     currentTemp_c: data.current.temp_c,
     currentTemp_f: data.current.temp_f,
+    isDay: data.current.is_day,
     forecastDays: [], // Initialize forecastDays array
   };
 
@@ -24,8 +26,9 @@ function formatWeatherData(data) {
 
     formattedData.forecastDays[i].push({
       title: format(parseISO(forecastDay.date), 'eeee'),
-      icon: forecastDay.day.condition.icon,
       text: forecastDay.day.condition.text,
+      icon: forecastDay.day.condition.icon,
+      code: forecastDay.day.condition.code,
       temp_c: forecastDay.day.maxtemp_c,
       temp_f: forecastDay.day.maxtemp_f,
 

@@ -2,6 +2,32 @@
 /* eslint-disable no-plusplus */
 // Select the searchbar and the submit button
 
+function getConditionCode(weatherData) {
+  return weatherData.currentConditionCode;
+}
+
+function setBackgroundColor(weatherData) {
+  const conditionCode = getConditionCode(weatherData);
+  const contentHolder = document.querySelector('#content-container');
+  console.log(weatherData.isDay);
+  // Verwijder alle bestaande klassen
+  contentHolder.className = '';
+
+  // Voeg de basisstijlklasse en de specifieke klasse toe op basis van conditionCode
+  if (conditionCode <= 1003) {
+    contentHolder.classList.add('content-holder', 'content-holder-sun');
+  } else if (conditionCode > 1003 && conditionCode <= 1087) {
+    contentHolder.classList.add('content-holder', 'content-holder-cloudy');
+  } else if ((conditionCode > 1116 && conditionCode <= 1207) || (conditionCode > 1239 && conditionCode <= 1252) || conditionCode === 1273 || conditionCode === 1276) {
+    contentHolder.classList.add('content-holder', 'content-holder-rain');
+  } else if ((conditionCode > 1212 && conditionCode <= 1237) || (conditionCode > 1254 && conditionCode <= 1264)) {
+    contentHolder.classList.add('content-holder', 'content-holder-icy');
+  } else {
+    contentHolder.classList.add('content-holder', 'content-holder-sun'); // Default klasse
+  }
+  console.log(contentHolder.className, conditionCode);
+}
+
 export function getFormElements() {
   const searchBar = document.querySelector('#search-location');
   const submitButton = document.querySelector('#search-submit');
@@ -48,7 +74,7 @@ function getTempContainers() {
   };
 }
 
-// Get all current temerature values
+// Get all current temperature values
 export function getCurrentTempValues() {
   const tempContainers = getTempContainers();
 
@@ -112,6 +138,8 @@ function createIcon(url, addClass) {
 function setElementsTodaysWeather(weatherData) {
   const TodaysWeatherElements = getElementsTodaysWeather();
 
+  // Set corresponding background color
+
   // Set the content of todays weather
   TodaysWeatherElements.todaysWeatherTitle.innerHTML = `<h1>Today's weather in ${weatherData.location}</h1>`;
   TodaysWeatherElements.todaysWeatherIcon.append(createIcon(weatherData.currentConditionIcon, 'weather-today__icon'));
@@ -169,7 +197,7 @@ export function setTempValues() {
     tempContainers.todaysTempContainer.innerHTML = `${celsiusToFahrenheit(temperatureValueToday)} °F`;
     tempContainers.forecastTempContainerDay1.innerHTML = `${celsiusToFahrenheit(temperatureValueDay1)} °F`;
     tempContainers.forecastTempContainerDay2.innerHTML = `${celsiusToFahrenheit(temperatureValueDay2)} °F`;
-  } else if (getTempScale() === false) {
+  } else {
     tempContainers.todaysTempContainer.innerHTML = `${fahrenheitToCelsius(temperatureValueToday)} °C`;
     tempContainers.forecastTempContainerDay1.innerHTML = `${fahrenheitToCelsius(temperatureValueDay1)} °C`;
     tempContainers.forecastTempContainerDay2.innerHTML = `${fahrenheitToCelsius(temperatureValueDay2)} °C`;
@@ -178,6 +206,7 @@ export function setTempValues() {
 
 // Display all weather data for today and the forecast
 export function setNewContent(formattedData) {
+  setBackgroundColor(formattedData);
   setElementsTodaysWeather(formattedData);
 
   for (let dayIndex = 1; dayIndex <= 2; dayIndex++) {

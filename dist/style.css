@@ -3,9 +3,21 @@
 
 /**** Custom properties ****/
 
-:root{
-    --background-color-1: rgb(0, 162, 255);
-    --background-color-2: rgb(0, 225, 255);
+:root{  
+    --background-color-night: rgb(0, 28, 44);
+    --background-color-night: rgb(0, 87, 99);
+
+    --background-color-sun: rgb(0, 162, 255);
+    --background-color-sun: rgb(0, 225, 255);
+
+    --background-color-cloudy: rgb(135, 178, 202);
+    --background-color-cloudy: rgb(135, 178, 202);
+
+    --background-color-rain: rgb(0, 162, 255);
+    --background-color-rain: rgb(173, 194, 197);
+
+    --background-color-icy: rgb(133, 210, 255);
+    --background-color-icy: rgb(139, 238, 255);
 
     --font-color: #eee;
     --font-family: 'Poppins', sans-serif;
@@ -18,7 +30,6 @@ body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background: linear-gradient(270deg, var(--background-color-1), var(--background-color-2));
     font-family: var(--font-family);
     color: var(--font-color);
     font-size: 1em;
@@ -38,6 +49,27 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+.content-holder-night{
+    background: linear-gradient(270deg, var(--background-color-night), var(--background-color-night));
+}
+
+.content-holder-sun{
+    background: linear-gradient(270deg, var(--background-color-sun), var(--background-color-sun));
+}
+
+.content-holder-cloudy{
+    background: linear-gradient(270deg, var(--background-color-cloudy), var(--background-color-cloudy));
+}
+
+.content-holder-rain{
+    background: linear-gradient(270deg, var(--background-color-rain), var(--background-color-rain));
+}
+
+.content-holder-icy{
+    background: linear-gradient(270deg, var(--background-color-icy), var(--background-color-icy));
 }
 
 .content{
