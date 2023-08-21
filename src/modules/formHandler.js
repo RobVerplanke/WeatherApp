@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import {
-  clearIconContainers, getFormElements, setNewContent, toggleTempScale,
+  clearIconContainers, getFormElements, setNewContent, setTempValues,
 } from './weatherDisplay';
 import fetchWeather from './weatherDataFetcher';
 
@@ -15,9 +15,9 @@ export default function addEventListeners() {
 
   temperatureToggle.addEventListener('change', () => {
     if (temperatureToggle.checked) {
-      toggleTempScale('Fahrenheit');
+      setTempValues();
     } else {
-      toggleTempScale('Celcius');
+      setTempValues();
     }
   });
 }

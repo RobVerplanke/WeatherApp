@@ -71,15 +71,13 @@ h1{
 }
 
 .weather-forecast-day-1__degrees,
-.weather-forecast-day-2__degrees,
-.weather-forecast-day-3__degrees {
+.weather-forecast-day-2__degrees{
     font-size: 1.4em;
 
 }
 
 .weather-forecast-day-1__title,
-.weather-forecast-day-2__title,
-.weather-forecast-day-3__title {
+.weather-forecast-day-2__title {
     font-size: 1.4em;
 
 }

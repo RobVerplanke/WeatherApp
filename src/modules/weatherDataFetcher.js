@@ -14,7 +14,7 @@ function formatWeatherData(data) {
     forecastDays: [], // Initialize forecastDays array
   };
 
-  for (let i = 0; i <= 3; i++) {
+  for (let i = 0; i <= 2; i++) {
     const forecastDay = data.forecast.forecastday[i];
 
     // Initialize forecastDays[i] as an empty array if it's undefined
@@ -38,7 +38,7 @@ function formatWeatherData(data) {
 // Function to fetch all data
 export default async function fetchWeather(location) {
   const apiKey = '106cea8e9d704e439de122930230708';
-  const forecastDays = 4;
+  const forecastDays = 3;
   const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=${forecastDays}`;
   try {
     const response = await fetch(apiUrl);
