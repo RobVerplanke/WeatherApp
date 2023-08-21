@@ -32,11 +32,9 @@ export function clearIconContainers() {
   forecastIconDay2.innerHTML = '';
 }
 
+// Check wether the toggle switch is checked or not
 function getTempScale() {
-  const toggleCheckbox = document.querySelector('#temperature-toggle');
-  const toggleStatus = toggleCheckbox.checked;
-
-  return toggleStatus;
+  return document.querySelector('#temperature-toggle').checked;
 }
 
 // Select all temperature containers
@@ -50,6 +48,7 @@ function getTempContainers() {
   };
 }
 
+// Get all current temerature values
 export function getCurrentTempValues() {
   const tempContainers = getTempContainers();
 
@@ -154,6 +153,7 @@ function setElementsForecast(dayIndex, weatherData) {
   );
 }
 
+// Convert current temperature values
 export function setTempValues() {
   const currentTempValues = getCurrentTempValues();
   const tempContainers = getTempContainers();
@@ -176,6 +176,7 @@ export function setTempValues() {
   }
 }
 
+// Display all weather data for today and the forecast
 export function setNewContent(formattedData) {
   setElementsTodaysWeather(formattedData);
 

@@ -14,10 +14,6 @@ export default function addEventListeners() {
   });
 
   temperatureToggle.addEventListener('change', () => {
-    if (temperatureToggle.checked) {
-      setTempValues();
-    } else {
-      setTempValues();
-    }
+    setTempValues();
   });
 }
