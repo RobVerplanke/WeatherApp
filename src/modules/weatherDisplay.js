@@ -1,33 +1,35 @@
 /* eslint-disable max-len */
 /* eslint-disable no-plusplus */
-// Select the searchbar and the submit button
 
+// Get unique weather code
 function getConditionCode(weatherData) {
   return weatherData.currentConditionCode;
 }
 
+// Set background color, depending on the weather type and day or night status
 function setBackgroundColor(weatherData) {
   const conditionCode = getConditionCode(weatherData);
   const contentHolder = document.querySelector('#content-container');
-  console.log(weatherData.isDay);
-  // Verwijder alle bestaande klassen
-  contentHolder.className = '';
 
-  // Voeg de basisstijlklasse en de specifieke klasse toe op basis van conditionCode
+  contentHolder.className = 'content-holder'; // Set base style
+
   if (conditionCode <= 1003) {
-    contentHolder.classList.add('content-holder', 'content-holder-sun');
+    contentHolder.classList.add('content-holder-sun');
   } else if (conditionCode > 1003 && conditionCode <= 1087) {
-    contentHolder.classList.add('content-holder', 'content-holder-cloudy');
+    contentHolder.classList.add('content-holder-cloudy');
   } else if ((conditionCode > 1116 && conditionCode <= 1207) || (conditionCode > 1239 && conditionCode <= 1252) || conditionCode === 1273 || conditionCode === 1276) {
-    contentHolder.classList.add('content-holder', 'content-holder-rain');
+    contentHolder.classList.add('content-holder-rain');
   } else if ((conditionCode > 1212 && conditionCode <= 1237) || (conditionCode > 1254 && conditionCode <= 1264)) {
-    contentHolder.classList.add('content-holder', 'content-holder-icy');
-  } else {
-    contentHolder.classList.add('content-holder', 'content-holder-sun'); // Default klasse
+    contentHolder.classList.add('content-holder-icy');
   }
-  console.log(contentHolder.className, conditionCode);
+
+  if (weatherData.isDay === 0) {
+    contentHolder.className = '';
+    contentHolder.classList.add('content-holder', 'content-holder-night');
+  }
 }
 
+// Get all form elements
 export function getFormElements() {
   const searchBar = document.querySelector('#search-location');
   const submitButton = document.querySelector('#search-submit');
